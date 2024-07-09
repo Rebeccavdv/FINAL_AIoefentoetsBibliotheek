@@ -1,0 +1,14 @@
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\bin\Debug\net8.0\AIoefentoetsBibliotheek.exe
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\bin\Debug\net8.0\AIoefentoetsBibliotheek.deps.json
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\bin\Debug\net8.0\AIoefentoetsBibliotheek.runtimeconfig.json
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\bin\Debug\net8.0\AIoefentoetsBibliotheek.dll
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\bin\Debug\net8.0\AIoefentoetsBibliotheek.pdb
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.AssemblyInfoInputs.cache
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.AssemblyInfo.cs
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.csproj.CoreCompileInputs.cache
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.dll
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\refint\AIoefentoetsBibliotheek.dll
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.pdb
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\AIoefentoetsBibliotheek.genruntimeconfig.cache
+C:\Users\MZL11\source\repos\AIoefentoetsBibliotheek\obj\Debug\net8.0\ref\AIoefentoetsBibliotheek.dll

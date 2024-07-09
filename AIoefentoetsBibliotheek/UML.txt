@@ -1,0 +1,79 @@
+﻿+-------------------------------------+
+|             Item                    |
++-------------------------------------+
+| - titel: string                     |
+| - auteur: string                    |
+| - isGeleend: bool                   |
++-------------------------------------+
+| + Leen(dagen: int): void            |
+| + LeverIn(): void                   |
++-------------------------------------+
+             ^
+             |
+  +----------+-----------+
+  |          |           |
+  |          |           |
++-----+  +--------+  +------+
+| Boek | |  Film  | |  Spel |
++-----+  +--------+  +------+
+             |            |
+       +--------------------+
+       |  IKostBerekenbaar  |
+       +--------------------+
+       | + BerekenKosten()  |
+       +--------------------+
+
++----------------------------------------------------+
+|                Gebruiker                           |
++----------------------------------------------------+
+| - naam: string                                     |
+| - bibliotheekPas: BibliotheekPas                   |
+| - leningen: List<Lening>                           |
++----------------------------------------------------+
+| + VoegLeningToe(lening: Lening): void              |
+| + MaximaalAantalBoeken(): int                      |
+| + FilmKostenPerDag(): decimal                      |
+| + SpelKostenPerDag(): decimal                      |
++----------------------------------------------------+
+             ^
+             |
+  +----------+-----------+
+  |          |           |
+  |          |           |
++----------+-----------+-----------+
+| Beginner |    Pro    |    Nerd   |
++----------+-----------+-----------+
+
++---------------------------------------------------+
+|                BibliotheekPas                     |
++---------------------------------------------------+
+| - pasType: string                                 |
+| - geldigTot: DateTime                             |
++---------------------------------------------------+
+| + BibliotheekPas(pasType: string, geldigTot: DateTime) |
++---------------------------------------------------+
+
++-----------------------------------+
+|          Bibliotheek              |
++-----------------------------------+
+| - items: List<Item>               |
+| - gebruikers: List<Gebruiker>     |
++-----------------------------------+
+| + GetInstance(): Bibliotheek      |
+| + VoegItemToe(item: Item): void   |
+| + VoegGebruikerToe(gebruiker: Gebruiker): void    |
+| + ZoekItem(titel: string): Item   |
+| + LeenItem(titel: string, gebruiker: Gebruiker, dagen: int): void |
++-----------------------------------+
+
++-----------------------------------+
+|              Lening               |
++-----------------------------------+
+| - item: Item                      |
+| - gebruiker: Gebruiker            |
+| - leenDatum: DateTime             |
+| - inleverDatum: DateTime          |
++-----------------------------------+
+| + GetLeningDetails(): string      |
+| + BerekenTeLaatKosten(): decimal  |
++-----------------------------------+

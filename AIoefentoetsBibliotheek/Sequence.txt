@@ -1,0 +1,14 @@
+﻿    Gebruiker  Bibliotheek  Item  Lening
+       |            |        |       |
+       |            |        |       |
+       |------> ZoekItem(titel) ---->|
+       |<------ Item gevonden -------|
+       |            |        |       |
+       |------> LeenItem(titel, gebruiker, dagen) 
+       |            |-------> Leen(dagen)
+       |            |<------- Item geleend
+       |            |        |       |
+       |------> VoegLeningToe(lening)------>|
+       |            |        |       |
+       |<------ Lening toegevoegd -------|
+       |            |        |       |
