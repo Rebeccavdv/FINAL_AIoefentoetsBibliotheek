@@ -1,0 +1,86 @@
+using System;
+using NUnit.Framework;
+using System.Collections.Generic;
+
+[TestFixture]
+public class BibliotheekTests {
+    private Bibliotheek bibliotheek;
+    private Gebruiker beginner;
+    private Gebruiker pro;
+    private Gebruiker nerd;
+
+    // SetUp wordt uitgevoerd voor elke test en initialiseert de benodigde objecten
+    [SetUp]
+    public void SetUp() {
+        bibliotheek = Bibliotheek.GetInstance();
+        bibliotheek.VoegItemToe(new Boek { Titel = "De Hobbit", Auteur = "J.R.R. Tolkien" });
+        bibliotheek.VoegItemToe(new Film { Titel = "Inception", Regisseur = "Christopher Nolan" });
+        bibliotheek.VoegItemToe(new Spel { Titel = "The Witcher 3", Platform = "PC" });
+
+        beginner = new Beginner { Naam = "Jan", BibliotheekPas = new BibliotheekPas("Beginner", DateTime.Now.AddYears(1)) };
+        pro = new Pro { Naam = "Piet", BibliotheekPas = new BibliotheekPas("Pro", DateTime.Now.AddYears(1)) };
+        nerd = new Nerd { Naam = "Klaas", BibliotheekPas = new BibliotheekPas("Nerd", DateTime.Now.AddYears(1)) };
+
+        bibliotheek.VoegGebruikerToe(beginner);
+        bibliotheek.VoegGebruikerToe(pro);
+        bibliotheek.VoegGebruikerToe(nerd);
+    }
+
+    // Test om te controleren of een item correct kan worden geleend door een gebruiker
+    [Test]
+    public void TestLeenItem() {
+        bibliotheek.LeenItem("De Hobbit", beginner, 14);
+
+        // Verifieer dat het geleende item is toegevoegd aan de leningen van de gebruiker
+        Assert.AreEqual(1, beginner.Leningen.Count);
+        Assert.AreEqual("De Hobbit", beginner.Leningen[0].Item.Titel);
+    }
+
+    // Test om te verifiëren dat het maximale aantal boeken dat verschillende gebruikers kunnen lenen correct is
+    [Test]
+    public void TestMaximaalAantalBoeken() {
+        Assert.AreEqual(3, beginner.MaximaalAantalBoeken());
+        Assert.AreEqual(5, pro.MaximaalAantalBoeken());
+        Assert.AreEqual(8, nerd.MaximaalAantalBoeken());
+    }
+
+    // Test om de te laat kosten van een lening te berekenen
+    [Test]
+    public void TestBerekenTeLaatKosten() {
+        // Lening creëren met een inleverdatum in het verleden om te testen
+        var lening = new Lening {
+            Item = new Boek { Titel = "Test Boek" },
+            Gebruiker = beginner,
+            LeenDatum = DateTime.Now.AddDays(-30),  // 30 dagen geleden geleend
+            InleverDatum = DateTime.Now.AddDays(-9) // 9 dagen geleden moeten inleveren
+        };
+
+        decimal teLaatKosten = lening.BerekenTeLaatKosten();
+        Assert.AreEqual(0.45m, teLaatKosten); // 9 dagen te laat à €0.05 per dag
+    }
+
+    // Test om de kosten van het huren van een film voor een beginner te verifiëren
+    [Test]
+    public void TestFilmKostenVoorBeginner() {
+        decimal kosten = ((IKostBerekenbaar) new Film { Titel = "Test Film" }).BerekenKosten();
+        Assert.AreEqual(0.30m, kosten);
+    }
+
+    // Test om de kosten van het huren van een spel voor een pro-gebruiker te verifiëren
+    [Test]
+    public void TestSpelKostenVoorPro() {
+        decimal kosten = ((IKostBerekenbaar) new Spel { Titel = "Test Spel" }).BerekenKosten();
+        Assert.AreEqual(0.60m, kosten);
+    }
+
+    // Test om te verifiëren dat een nerd-gebruiker één film en één spel gratis kan lenen
+    [Test]
+    public void TestNerdGratisFilmEnSpel() {
+        bibliotheek.LeenItem("Inception", nerd, 7);
+        bibliotheek.LeenItem("The Witcher 3", nerd, 7);
+
+        // Verifieer dat de eerste film en het eerste spel gratis zijn
+        Assert.AreEqual(0.15m, nerd.Leningen[0].BerekenTeLaatKosten()); // Na 7 dagen geen kosten
+        Assert.AreEqual(0.30m, nerd.Leningen[1].BerekenTeLaatKosten()); // Na 7 dagen geen kosten
+    }
+}
